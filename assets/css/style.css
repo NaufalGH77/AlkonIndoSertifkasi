@@ -1,0 +1,1266 @@
+:root {
+    /* Skema Warna */
+    --primary-color: #FFC300;     /* Kuning (Paling Cerah/Aksen) */
+    --secondary-color: #004D40;   /* Hijau Tua (Background Navbar & Footer) */
+    --accent-color: #D32F2D;      /* Merah (Pelengkap/Tombol CTA Utama) */
+    --dark-bg: #1a1a1a;           /* Background gelap umum */
+    --light-bg: #f7f7f7;          /* Background Section Abu-abu Muda */
+    --text-color: #333;           /* Warna teks standar */
+}
+
+/* === BASE STYLES & TYPOGRAPHY === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+h1, h2, h3 {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+section {
+    padding: 50px 5%;
+    text-align: center;
+}
+
+.subtitle {
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+.separator {
+    width: 50px;
+    height: 3px;
+    margin: 10px auto 20px;
+    background-color: var(--accent-color); /* Separator default */
+}
+
+/* === UTILITY CLASSES === */
+.primary-bg {
+    background-color: var(--primary-color);
+    color: var(--dark-bg);
+}
+
+.accent-bg {
+    background-color: var(--accent-color);
+}
+
+.primary-color {
+    color: var(--primary-color);
+}
+
+.secondary-color {
+    color: var(--secondary-color);
+}
+
+.light-bg {
+    background-color: var(--light-bg);
+}
+
+.dark-bg {
+    background-color: var(--dark-bg);
+    color: white;
+}
+
+/* === 1. NAVBAR (Hijau Tua) === */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    background-color: var(--secondary-color); /* HIJAU TUA */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 5px;
+}
+
+.nav-link {
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    font-weight: 500;
+    color: white; /* Teks default PUTIH */
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--primary-color); /* Hover KUNING */
+}
+
+.active-link {
+    color: var(--primary-color) !important; /* Link Aktif KUNING */
+    border-bottom: 3px solid var(--primary-color); /* Garis bawah KUNING */
+    padding-bottom: 7px;
+}
+
+/* Dropdown styling */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    min-width: 200px;
+    z-index: 50;
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+}
+
+.dropdown-menu li a {
+    padding: 10px 15px;
+    font-weight: 400;
+    color: var(--secondary-color);
+    border-bottom: none;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li .primary-bg { /* Style untuk link aktif di dropdown */
+    background-color: var(--light-bg);
+    color: var(--accent-color);
+}
+
+
+/* === 2. HOME: HERO SECTION === */
+.hero-section {
+    position: relative;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.hero-image-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.hero-image-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.img-top-left { grid-area: 1 / 1 / 3 / 2; } 
+.img-top-right { grid-area: 1 / 2 / 2 / 4; } 
+.img-mid-left { display: none; } 
+.img-mid-center { grid-area: 2 / 2 / 3 / 3; } 
+.img-bottom-right { grid-area: 2 / 3 / 3 / 4; } 
+
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 35%, rgba(0, 0, 0, 0.2) 65%); 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 5%;
+    text-align: left;
+}
+
+.hero-text-box {
+    max-width: 500px;
+    color: white;
+}
+
+.hero-text-box h1 {
+    color: white;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-text-box p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+}
+
+.cta-button {
+    /* Button CTA Home (Merah/Accent) */
+    padding: 12px 30px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 5px;
+    transition: opacity 0.3s;
+    background-color: var(--accent-color); 
+    color: white;
+}
+
+.cta-button:hover {
+    opacity: 0.9;
+}
+
+
+/* === 3. HOME: FEATURE SECTION (KEUNGGULAN) === */
+.features-section {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: -70px; 
+    position: relative;
+    z-index: 2;
+}
+
+.feature-box {
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+    border-top: 5px solid var(--primary-color); /* Garis atas KUNING */
+}
+
+.thumb-icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.feature-box h3 {
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    color: var(--dark-bg);
+}
+
+.feature-box p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* === 4. HOME: EXPERTISE SECTION (KEAHLIAN KAMI) === */
+.expertise-section {
+    padding-top: 80px;
+}
+
+.expertise-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.expertise-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    width: 25%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.expertise-card img {
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.expertise-card h3 {
+    font-size: 1em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--dark-bg);
+}
+
+/* === 5. HOME: ACTIVITIES SECTION (KEGIATAN KAMI) === */
+.activities-section a {
+    font-weight: 600;
+}
+
+/* ========================================================= */
+/* === STYLES UNTUK HALAMAN DALAM (PROFILE, SERVICES, ETC) === */
+/* ========================================================= */
+
+/* === PAGE HEADER / BREADCRUMB === */
+.page-header-section {
+    position: relative;
+    height: 35vh; 
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.header-bg-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.header-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6); 
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-header-section h1 {
+    color: white;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.breadcrumb {
+    color: white;
+    font-size: 0.9em;
+}
+
+.breadcrumb a {
+    color: var(--primary-color); 
+    transition: opacity 0.3s;
+}
+.breadcrumb a:hover {
+    opacity: 0.8;
+}
+
+/* === PROFILE CONTENT SECTION === */
+.profile-content {
+    padding: 60px 5%;
+    text-align: left;
+}
+
+.profile-container {
+    display: flex;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.profile-text {
+    flex: 3;
+    font-size: 1.05em;
+}
+
+.profile-text p {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.profile-image {
+    flex: 2;
+}
+
+.profile-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.vision-mission {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.vision-mission h2 {
+    font-size: 1.5em;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.vision-mission ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.vision-mission li {
+    margin-bottom: 8px;
+}
+
+
+/* === 6. FOOTER (Hijau Tua) === */
+footer {
+    background-color: var(--secondary-color); /* HIJAU TUA */
+    padding: 40px 5%;
+    font-size: 0.9em;
+    color: #ccc; 
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+}
+
+.footer-column {
+    max-width: 300px;
+    margin: 20px 20px 0 0;
+    text-align: left;
+}
+
+.footer-column h3 {
+    color: var(--primary-color); /* Judul kolom KUNING */
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--accent-color); /* Garis bawah MERAH */
+    padding-bottom: 5px;
+    width: fit-content;
+}
+
+.footer-column p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.footer-column i {
+    color: var(--primary-color); /* Ikon kontak KUNING */
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.signup-button {
+    /* Tombol Daftar Sekarang di footer */
+    background-color: var(--primary-color); /* Tombol KUNING */
+    color: var(--dark-bg) !important;
+    padding: 8px 15px;
+    display: inline-block;
+    margin-top: 15px;
+    font-weight: 700;
+    border-radius: 3px;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.signup-button:hover {
+    background-color: var(--accent-color); /* Hover ke MERAH */
+    color: white !important;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+}
+
+/* --- MEDIA QUERIES (Responsiveness) --- */
+@media (max-width: 1024px) {
+    .features-section {
+        flex-wrap: wrap;
+        margin-top: 0;
+        padding-top: 30px;
+    }
+    .feature-box {
+        width: 45%;
+        margin-bottom: 20px;
+    }
+    .expertise-grid {
+        flex-wrap: wrap;
+    }
+    .expertise-card {
+        width: 45%;
+        margin-bottom: 20px;
+    }
+    .hero-image-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+    .img-top-left { grid-area: 1 / 1 / 3 / 2; } 
+    .img-top-right { grid-area: 1 / 2 / 2 / 3; }
+    .img-mid-center { grid-area: 2 / 2 / 3 / 3; }
+    .img-bottom-right { display: none; }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none; /* Sembunyikan untuk burger menu */
+    }
+    .nav-links li {
+        width: 100%;
+        margin: 0;
+    }
+    .nav-link {
+        padding: 10px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .hero-overlay {
+        justify-content: center;
+        text-align: center;
+        padding: 0 5%;
+    }
+    .hero-text-box {
+        max-width: 90%;
+    }
+    .features-section, .expertise-grid, .footer-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .feature-box, .expertise-card, .footer-column {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+    .footer-column h3 {
+        width: 100%;
+        text-align: center;
+    }
+    .footer-column {
+        text-align: center;
+    }
+    .profile-container {
+        flex-direction: column;
+    }
+    .profile-image {
+        order: -1; 
+        margin-bottom: 30px;
+    }
+}
+/* === Tambahkan ke file css/style.css Anda yang sudah ada === */
+
+/* === PARTNERS CONTENT SECTION === */
+.partners-content {
+    padding: 60px 5%;
+}
+
+.partners-grid {
+    display: grid;
+    /* Tampilkan 3 kolom logo di desktop */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.partner-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px; /* Tinggi minimum untuk konsistensi */
+}
+
+.partner-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.partner-card img {
+    max-height: 80px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.partner-card p {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--secondary-color);
+    line-height: 1.3;
+}
+
+.note-box {
+    max-width: 800px;
+    margin: 40px auto 0;
+    padding: 15px;
+    background-color: white;
+    border-left: 5px solid var(--primary-color);
+    text-align: left;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.note-box i {
+    margin-right: 10px;
+}
+
+/* Responsive adjustments for Partners */
+@media (max-width: 768px) {
+    .partners-grid {
+        /* Tampilkan 2 kolom di tablet/mobile */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 480px) {
+    .partners-grid {
+        /* Tampilkan 1 kolom di mobile yang lebih kecil */
+        grid-template-columns: 1fr;
+    }
+}
+
+/* === Tambahkan ke file css/style.css Anda yang sudah ada === */
+
+/* === AUDITORS CONTENT SECTION === */
+.auditors-content {
+    padding: 60px 5%;
+}
+
+.auditor-grid {
+    display: grid;
+    /* Tampilkan 3 kolom untuk desktop, 2 kolom untuk tablet */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+    gap: 20px;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.auditor-card {
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.auditor-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.auditor-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(5%);
+}
+
+.auditor-info {
+    padding: 15px;
+}
+
+.auditor-info h3 {
+    font-size: 0.95em;
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.auditor-info .position {
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 8px;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.qualification {
+    list-style: none;
+    padding: 0;
+    font-size: 0.8em;
+    display: none; /* Sembunyikan jika ingin tampilan lebih ringkas */
+}
+
+.qualification li {
+    margin-bottom: 6px;
+    color: #666;
+}
+
+.qualification i {
+    margin-right: 8px;
+    color: var(--primary-color);
+    width: 12px;
+}
+
+.call-to-action-note {
+    margin-top: 40px;
+    font-size: 1em;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Responsive adjustments for Auditors */
+@media (max-width: 1024px) {
+    .auditor-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .auditor-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .auditor-card img {
+        height: 200px;
+    }
+    .auditor-info {
+        padding: 12px;
+    }
+    .auditor-info h3 {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .auditor-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    .auditor-card img {
+        height: 180px;
+    }
+    .auditor-info {
+        padding: 10px;
+    }
+    .auditor-info h3 {
+        font-size: 0.85em;
+    }
+    .auditor-info .position {
+        font-size: 0.75em;
+    }
+}
+/* === Tambahkan ke file css/style.css Anda yang sudah ada === */
+
+/* === SERVICES CONTENT SECTION === */
+.services-content {
+    padding: 60px 5%;
+}
+
+.service-grid {
+    display: grid;
+    /* Tampilkan 4 kolom di desktop */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.service-card {
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: box-shadow 0.3s, transform 0.3s;
+    text-align: center;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    background-color: white; /* Beri efek lebih cerah saat hover */
+}
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.service-card h3 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: var(--dark-bg);
+}
+
+.service-card p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 20px;
+    min-height: 50px; /* Jaga konsistensi tinggi untuk deskripsi */
+}
+
+.read-more-link {
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.read-more-link:hover {
+    color: var(--accent-color);
+}
+
+.call-to-action-services {
+    margin-top: 40px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+/* === Tambahkan ke file css/style.css Anda yang sudah ada === */
+
+/* === GALLERY CONTENT SECTION === */
+.gallery-content {
+    padding: 60px 5%;
+}
+
+.gallery-filters {
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    background-color: white;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: 500;
+}
+
+.filter-btn:hover, .filter-btn.primary-bg {
+    background-color: var(--primary-color);
+    color: var(--dark-bg);
+    border-color: var(--primary-color);
+}
+
+.gallery-grid {
+    display: grid;
+    /* 3 kolom di desktop, menyesuaikan gambar */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px; /* Tinggi tetap untuk konsistensi */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background: rgba(0, 77, 64, 0.8); /* Hijau Tua Transparan */
+    color: white;
+    font-weight: 500;
+    font-size: 0.9em;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
+}
+
+.gallery-item:hover .caption {
+    transform: translateY(0);
+}
+/* === Tambahkan ke file css/style.css Anda yang sudah ada === */
+
+/* === CONTACT CONTENT SECTION === */
+.contact-info-form {
+    padding: 60px 5%;
+}
+
+.contact-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.contact-details {
+    flex: 1;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.contact-details h2 {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    font-size: 1em;
+}
+
+.info-item i {
+    font-size: 1.2em;
+    margin-right: 15px;
+    width: 25px;
+    text-align: center;
+    padding-top: 3px;
+}
+
+.info-item p {
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+
+.contact-form-box {
+    flex: 2;
+    padding: 20px 0;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 1em;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 195, 0, 0.5);
+}
+
+.contact-form .cta-button {
+    /* Menggunakan gaya tombol CTA Home, tapi Kuning */
+    width: auto;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    background-color: var(--primary-color);
+    color: var(--dark-bg);
+}
+
+.contact-form .cta-button:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* === GOOGLE MAP SECTION === */
+.google-map-section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.google-map-section iframe {
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments for Contact */
+@media (max-width: 900px) {
+    .contact-container {
+        flex-direction: column;
+    }
+    .contact-details {
+        text-align: center;
+    }
+    .contact-details h2 {
+        text-align: center;
+    }
+    .contact-details .separator {
+        margin: 10px auto 20px;
+    }
+    .info-item {
+        justify-content: center;
+        text-align: left;
+    }
+}
+
+/* === Tambahkan ke file css/style.css Anda yang sudah ada === */
+
+/* ========================================================= */
+/* === CLIENTS PAGE STYLES === */
+/* ========================================================= */
+
+.clients-content {
+    padding: 60px 5%;
+}
+
+/* --- Tombol Filter --- */
+.client-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.filter-btn {
+    background-color: #f0f0f0;
+    color: var(--secondary-color);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.85em;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.filter-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-bg);
+}
+
+/* Tombol yang sedang aktif */
+.filter-btn.primary-bg {
+    background-color: var(--primary-color);
+    color: var(--dark-bg);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* --- Grid Logo Klien --- */
+.clients-logo-grid {
+    display: grid;
+    /* Tampilkan 5 kolom di desktop */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 50px auto;
+}
+
+.client-logo-item {
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    /* Atur transisi untuk efek fade-in/out */
+    transition: opacity 0.5s ease; 
+}
+
+.client-logo-item img {
+    max-width: 80%;
+    height: 80px; /* Tinggi seragam untuk semua logo */
+    object-fit: contain; /* Memastikan logo terlihat utuh */
+    transition: none; /* Hapus transisi jika tidak ada filter yang berubah */
+}
+
+.client-logo-item:hover img {
+    filter: grayscale(0%); /* Logo berwarna saat di-hover */
+}
+
+/* Animasi (Opsional, untuk estetika) */
+.client-logo-item.fade-in {
+    opacity: 1;
+}
+.client-logo-item.fade-out {
+    opacity: 0;
+}
+
+/* --- CTA Note --- */
+.call-to-action-note {
+    font-size: 1.1em;
+    margin-top: 30px;
+}
+
+/* --- Media Queries --- */
+@media (max-width: 768px) {
+    .clients-logo-grid {
+        /* Di tablet, tampilkan 3 kolom */
+        grid-template-columns: repeat(3, 1fr); 
+    }
+    .filter-btn {
+        font-size: 0.75em;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .clients-logo-grid {
+        /* Di mobile, tampilkan 2 kolom */
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    .client-logo-item img {
+        height: 60px;
+    }
+}
+/* === Tambahkan ke file css/style.css Anda yang sudah ada === */
+
+/* ========================================================= */
+/* === FLOW CONTENT STYLES (Alur Sertifikasi - 3 Gambar Kiri Vertikal) === */
+/* ========================================================= */
+
+.flow-content {
+    padding: 60px 5%;
+    text-align: center;
+}
+
+.flow-content .subtitle {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Container utama untuk Gambar dan Deskripsi */
+.flow-presentation {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start; /* Sejajarkan konten di bagian atas */
+    max-width: 1200px;
+    margin: 50px auto 0 auto;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* Grup Gambar (Sekarang disusun vertikal) */
+.flow-images-group.vertical-flow-images { /* Menargetkan kelas baru */
+    flex: 1 1 50%; /* Gambar mengambil 50% ruang */
+    display: flex;
+    flex-direction: column; /* SUSUN VERTIKAL KE BAWAH */
+    gap: 30px; /* Jarak antar gambar vertikal */
+    padding-right: 30px; /* Lebih banyak padding kanan */
+    border-right: 1px solid #eee; /* Garis pemisah visual */
+    align-items: center; /* Pusatkan gambar secara horizontal di dalam grup */
+}
+
+.flow-image-item {
+    width: 100%; /* Setiap item mengambil seluruh lebar yang dialokasikan */
+    max-width: 350px; /* Batasi lebar maksimum per gambar */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.flow-image-item img {
+    width: 100%;
+    /* UKURAN DIPERBESAR LAGI AGAR SANGAT JELAS */
+    max-height: 450px; /* Diperbesar dari 350px menjadi 450px */
+    object-fit: contain; /* Penting agar diagram/tabel terlihat utuh */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    display: block;
+    margin: 0 auto;
+}
+
+.flow-image-item .image-caption {
+    margin-top: 15px;
+    font-size: 0.95em; /* Sedikit lebih besar untuk caption */
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+/* Deskripsi Teks (Sekarang mengambil 50% ruang juga) */
+.flow-description {
+    flex: 1 1 50%; /* Deskripsi mengambil 50% ruang */
+    text-align: left;
+    padding-left: 30px; /* Lebih banyak padding kiri */
+}
+
+.flow-description h3 {
+    font-size: 1.5em; /* Sedikit lebih besar */
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.flow-description p {
+    margin-bottom: 18px; /* Lebih banyak jarak antar paragraf */
+    line-height: 1.7;
+    color: #555;
+    font-size: 1em; /* Sedikit lebih besar */
+}
+
+/* ========================================================= */
+/* === RESPONSIVE FLOW CONTENT (3 Gambar Kiri Vertikal) === */
+/* ========================================================= */
+@media (max-width: 992px) {
+    .flow-presentation {
+        flex-direction: column; /* Stack vertikal */
+        gap: 30px;
+        padding: 30px;
+    }
+
+    .flow-images-group.vertical-flow-images {
+        border-right: none; 
+        border-bottom: 1px solid #eee; /* Garis bawah pemisah */
+        padding-right: 0;
+        padding-bottom: 30px;
+        max-width: 90%;
+        margin: 0 auto;
+        gap: 20px; /* Jarak antar gambar di mobile */
+    }
+
+    .flow-image-item {
+        max-width: 100%; /* Gambar akan mengambil lebar penuh kontainer */
+    }
+    
+    .flow-image-item img {
+        /* UKURAN DIPERBESAR PADA TABLET/MOBILE */
+        max-height: 380px; /* Lebih besar dari sebelumnya */
+    }
+
+    .flow-description {
+        padding-left: 0;
+        text-align: center; 
+    }
+
+    .flow-description h3,
+    .flow-description p {
+        text-align: center;
+    }
+}
