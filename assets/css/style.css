@@ -147,12 +147,15 @@ section {
 /* === HERO SECTION === */
 .hero-section {
     position: relative;
-    height: 60vh;
+    min-height: 75vh; /* increased so hero is larger */
+    height: auto;
+    padding: 0; /* remove default section padding so absolute image fills fully */
     overflow: hidden;
 }
 
 .hero-image-grid {
     position: absolute;
+    inset: 0; /* fill the hero area completely */
     width: 100%;
     height: 100%;
     display: grid;
@@ -164,13 +167,14 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center;
     filter: brightness(0.7);
 }
 
 .img-top-left { grid-area: 1 / 1 / 3 / 2; }
 .img-top-right { grid-area: 1 / 2 / 2 / 4; }
 .img-mid-left { display: none; }
-.img-mid-center { grid-area: 2 / 2 / 3 / 3; }
+.img-mid-center { grid-area: 1 / 1 / 3 / 4; /* span the full hero grid for a larger main image */ }
 .img-bottom-right { grid-area: 2 / 3 / 3 / 4; }
 
 .hero-overlay {
@@ -240,6 +244,9 @@ section {
 
 /* expertise */
 .expertise-section { padding-top: 80px; }
+.expertise-grid { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
+.expertise-card { background-color: white; padding: 20px; border-radius: 6px; width: 340px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.06); }
+.expertise-card img { display: block; margin: 0 auto 15px; max-width: 260px; max-height: 160px; width: auto; height: auto; object-fit: contain; }
 
 /* activities */
 .activities-section a { font-weight: 600; }
@@ -260,6 +267,8 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* turunkan sedikit fokus gambar (ubah persentase sesuai kebutuhan) */
+    object-position: center 60%;
     z-index: 1;
 }
 
@@ -708,6 +717,7 @@ footer {
     .service-grid { grid-template-columns: 1fr; }
     .gallery-grid { grid-template-columns: 1fr; }
     .partners-grid { grid-template-columns: repeat(2, 1fr); }
+    .expertise-card img { max-width: 200px; max-height: 120px; }
 
     .footer-container { flex-direction: column; gap: 30px; padding-bottom: 20px; }
     .footer-column { max-width: 100%; margin: 0; text-align: center; }
@@ -720,8 +730,9 @@ footer {
 
     .hero-text-box h1 { font-size: 1.8em; }
     .hero-image-grid { grid-template-columns: 1fr; }
-    .hero-image-grid img { display: none; }
-    .img-top-left { display: block; grid-area: 1 / 1 / 3 / 2; }
+    .hero-image-grid img { display: block; height: 100%; object-fit: cover; object-position: center center; }
+    .img-top-left { display: none; }
+    .img-mid-center { display: block; grid-area: 1 / 1 / 3 / 2; }
 
     .clients-logo-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
     .client-logo-item img { height: 60px; }
