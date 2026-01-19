@@ -957,6 +957,77 @@ footer {
     color: #555;
 }
 
+/* === CONSULTATION & OFFER CTA SECTIONS === */
+.consultation-cta-section {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--tertiary-color) 100%);
+    padding: 60px 20px;
+}
+
+.consultation-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.consultation-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 50px 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.consultation-box h2 {
+    font-size: 2em;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.consultation-box p {
+    font-size: 1.05em;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.consultation-box .btn {
+    gap: 10px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.consultation-box .btn i {
+    font-size: 1.2em;
+}
+
+.penawaran-cta-section {
+    background-color: var(--light-bg);
+    padding: 60px 20px;
+}
+
+.penawaran-box {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 50px 40px;
+    border-radius: 15px;
+    text-align: center;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 8px 30px rgba(253, 185, 19, 0.1);
+}
+
+.penawaran-box h2 {
+    font-size: 2em;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.penawaran-box p {
+    font-size: 1.05em;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
 /* === CLIENTS PAGE (consolidated filter-btn + clients grid) === */
 .clients-content { padding: 60px 5%; }
 
@@ -1141,6 +1212,11 @@ footer {
 
     .contact-container { grid-template-columns: 1fr; }
 
+    .consultation-box { padding: 40px 30px; }
+    .consultation-box h2 { font-size: 1.6em; }
+    .penawaran-box { padding: 40px 30px; }
+    .penawaran-box h2 { font-size: 1.6em; }
+
     .flow-presentation {
         flex-direction: column;
         gap: 30px;
@@ -1178,6 +1254,13 @@ footer {
     .profile-container { flex-direction: column; }
     .profile-image { order: -1; margin-bottom: 30px; }
 
+    .consultation-box { padding: 35px 20px; }
+    .consultation-box h2 { font-size: 1.4em; }
+    .consultation-box p { font-size: 0.95em; }
+    .penawaran-box { padding: 35px 20px; }
+    .penawaran-box h2 { font-size: 1.4em; }
+    .penawaran-box p { font-size: 0.95em; }
+
     .clients-logo-grid { grid-template-columns: repeat(3, 1fr); }
     .filter-btn { font-size: 0.75em; padding: 6px 12px; }
 
@@ -1206,6 +1289,13 @@ footer {
     .advantage-icon { font-size: 1.8em; }
     .advantage-card h3 { font-size: 0.95em; }
     .advantage-card p { font-size: 0.8em; }
+
+    .consultation-box { padding: 30px 15px; }
+    .consultation-box h2 { font-size: 1.2em; }
+    .consultation-box p { font-size: 0.9em; }
+    .penawaran-box { padding: 30px 15px; }
+    .penawaran-box h2 { font-size: 1.2em; }
+    .penawaran-box p { font-size: 0.9em; }
 
     .clients-logo-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
     .client-logo-item img { height: 60px; }
