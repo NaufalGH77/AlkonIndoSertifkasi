@@ -3,12 +3,14 @@
    ========================= */
 
 :root {
-    --primary-color: #FFC300;
-    --secondary-color: #004D40;
-    --accent-color: #D32F2D;
-    --dark-bg: #1a1a1a;
-    --light-bg: #f7f7f7;
+    --primary-color: #FDB913;
+    --secondary-color: #00373d;
+    --accent-color: #ED8B00;
+    --dark-bg: #00373d;
+    --light-bg: #FFF8E7;
     --text-color: #333;
+    --tertiary-color: #004d56;
+    --gold-gradient: linear-gradient(135deg, #FDB913 0%, #F7931E 50%, #ED8B00 100%);
 }
 
 /* === BASE STYLES & TYPOGRAPHY === */
@@ -98,6 +100,26 @@ section {
     color: var(--primary-color) !important;
     border-bottom: 3px solid var(--primary-color);
     padding-bottom: 7px;
+}
+
+/* Logo section */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-text {
+    color: white;
+    font-weight: 700;
+    font-size: 0.95em;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Dropdown styling */
@@ -208,6 +230,158 @@ section {
     margin-bottom: 25px;
 }
 
+/* === HERO MODERN (NEW) === */
+.hero-modern {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--tertiary-color) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-modern::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(253, 185, 19, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    top: -200px;
+    right: -200px;
+}
+
+.hero-modern::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(237, 139, 0, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    bottom: -150px;
+    left: -150px;
+}
+
+.hero-content {
+    max-width: 900px;
+    text-align: center;
+    color: white;
+    position: relative;
+    z-index: 2;
+}
+
+.badge-hero {
+    display: inline-block;
+    background: linear-gradient(135deg, #FFD700 0%, var(--primary-color) 50%, var(--accent-color) 100%);
+    color: var(--secondary-color);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.5em;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 14px 35px;
+    font-size: 1em;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    color: var(--secondary-color);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(253, 185, 19, 0.4);
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--secondary-color);
+    border: 3px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.advantage-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--primary-color);
+    padding: 30px 20px;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.advantage-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.advantage-icon {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.advantage-card h3 {
+    color: var(--primary-color);
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.advantage-card p {
+    font-size: 0.95em;
+    color: rgba(255, 255, 255, 0.85);
+}
+
 .cta-button {
     padding: 12px 30px;
     text-transform: uppercase;
@@ -222,12 +396,133 @@ section {
     opacity: 0.9;
 }
 
+/* === PENAWARAN SECTION === */
+.penawaran-section {
+    background-color: var(--light-bg);
+    padding: 80px 20px;
+}
+
+.penawaran-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.penawaran-container h2 {
+    font-size: 2em;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.penawaran-container .subtitle {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.penawaran-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.penawaran-form input,
+.penawaran-form select,
+.penawaran-form textarea {
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.penawaran-form input:focus,
+.penawaran-form select:focus,
+.penawaran-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(253, 185, 19, 0.1);
+}
+
+.form-success {
+    background-color: #d4edda;
+    border: 2px solid #28a745;
+    color: #155724;
+    padding: 15px 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.form-success.hidden {
+    display: none;
+}
+
+/* === ADVANTAGES SECTION === */
+.advantages-section {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--tertiary-color) 100%);
+    padding: 60px 20px;
+}
+
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.advantage-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--primary-color);
+    padding: 30px 20px;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.advantage-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.advantage-icon {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.advantage-card h3 {
+    color: var(--primary-color);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.advantage-card p {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+}
+
 /* === FEATURES / EXPERTISE / ETC === */
 .features-section {
     display: flex;
     justify-content: center;
     gap: 30px;
-    margin-top: -70px;
+    padding: 40px 20px;
     position: relative;
     z-index: 2;
 }
@@ -494,7 +789,173 @@ footer {
 }
 
 /* === CONTACT === */
-.contact-info-form { padding: 60px 5%; }
+.contact-info-form { 
+    padding: 60px 5%; 
+    background-color: var(--light-bg);
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.contact-card h2 {
+    margin-bottom: 15px;
+}
+
+.contact-card h3 {
+    font-size: 1.1em;
+}
+
+.info-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+.info-item i {
+    font-size: 1.3em;
+    min-width: 30px;
+    padding-top: 3px;
+}
+
+.info-text p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    color: #555;
+    text-align: left;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95em;
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(253, 185, 19, 0.1);
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+/* === PROFILE PAGE (Profile cards layout) === */
+.profile-header {
+    margin-bottom: 50px;
+}
+
+.profile-header h2 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+.profile-header .subtitle {
+    font-size: 1.1em;
+    color: #666;
+}
+
+.profile-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.profile-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.profile-card h3 {
+    color: var(--secondary-color);
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.profile-card h4 {
+    color: var(--secondary-color);
+    font-size: 1.2em;
+    margin-bottom: 12px;
+}
+
+.profile-card p {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.profile-card ul {
+    list-style-position: inside;
+    margin-left: 0;
+}
+
+.profile-card ul li {
+    color: #555;
+    margin-bottom: 12px;
+    line-height: 1.8;
+}
+
+.profile-side {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.vision-card {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.vision-card h4 {
+    color: white;
+}
+
+.vision-card p {
+    color: white;
+}
+
+.mission-card {
+    background-color: white;
+}
+
+.mission-card ul li {
+    color: #555;
+}
 
 /* === CLIENTS PAGE (consolidated filter-btn + clients grid) === */
 .clients-content { padding: 60px 5%; }
@@ -653,6 +1114,9 @@ footer {
 
 @media (max-width: 900px) {
     .navbar { flex-wrap: wrap; }
+    
+    .logo-text { font-size: 0.8em; display: none; }
+    
     .nav-links {
         display: none;
         flex-direction: column;
@@ -675,10 +1139,7 @@ footer {
     .dropdown-menu li a { color: white; padding: 8px 10% 8px 10%; text-align: left; }
     .dropdown-menu li a:hover { background-color: var(--accent-color); color: white; }
 
-    .contact-container { flex-direction: column; }
-    .contact-details h2 { text-align: center; }
-    .contact-details .separator { margin: 10px auto 20px; }
-    .info-item { justify-content: flex-start; text-align: left; }
+    .contact-container { grid-template-columns: 1fr; }
 
     .flow-presentation {
         flex-direction: column;
@@ -704,6 +1165,12 @@ footer {
     section { padding: 40px 5%; }
     .hero-overlay { justify-content: center; text-align: center; padding: 0 5%; background: rgba(0,0,0,0.7); }
     .page-header-section h1 { font-size: 2em; }
+
+    .advantages-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .advantage-card { padding: 20px 15px; }
+    .advantage-icon { font-size: 2em; }
+    .advantage-card h3 { font-size: 1em; }
+    .advantage-card p { font-size: 0.85em; }
 
     .features-section, .expertise-grid { flex-direction: column; gap: 20px; }
     .feature-box, .expertise-card { width: 100%; max-width: 100%; margin: 0; }
@@ -733,6 +1200,12 @@ footer {
     .hero-image-grid img { display: block; height: 100%; object-fit: cover; object-position: center center; }
     .img-top-left { display: none; }
     .img-mid-center { display: block; grid-area: 1 / 1 / 3 / 2; }
+
+    .advantages-grid { grid-template-columns: 1fr; gap: 12px; }
+    .advantage-card { padding: 15px 12px; }
+    .advantage-icon { font-size: 1.8em; }
+    .advantage-card h3 { font-size: 0.95em; }
+    .advantage-card p { font-size: 0.8em; }
 
     .clients-logo-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
     .client-logo-item img { height: 60px; }
