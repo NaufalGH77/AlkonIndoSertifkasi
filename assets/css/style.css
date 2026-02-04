@@ -1431,7 +1431,11 @@ footer {
 @media (max-width: 900px) {
     .navbar { flex-wrap: wrap; }
     
-    .logo-text { font-size: 0.8em; display: none; }
+    .logo-text {
+        font-size: 0.75em;
+        display: inline;
+        white-space: nowrap;
+    }
     
     .nav-links {
         display: none;
