@@ -89,27 +89,23 @@
             
             <div class="certificate-showcase-grid">
                 
-                <div class="certificate-item">
-                    <img src="path/to/certificates/cert_kemnaker.jpg" alt="Contoh Sertifikat Kemnaker">
+                <div class="certificate-item" onclick="openCertificateModal(this)">
+                    <img src="assets/img/gambar/Sertifikat Kemnaker.jpg" alt="Contoh Sertifikat Kemnaker" style="cursor: pointer;">
                     <p>Sertifikat Ahli K3 Umum (Kemnaker)</p>
                 </div>
-                
-                <div class="certificate-item">
-                    <img src="path/to/certificates/cert_bnsp.jpg" alt="Contoh Sertifikat BNSP">
-                    <p>Sertifikat Kompetensi (BNSP)</p>
-                </div>
-
-                <div class="certificate-item">
-                    <img src="path/to/certificates/cert_esdm.jpg" alt="Contoh Sertifikat ESDM">
-                    <p>Sertifikat Kompetensi Bidang Migas (ESDM)</p>
-                </div>
-
             </div>
             
-            <div class="call-to-action-note">
-                <a href="kontak.html" class="cta-button accent-bg">Daftar Pelatihan Sekarang</a>
-            </div>
         </section>
+
+    <!-- Certificate Modal -->
+    <div id="certificateModal" class="modal-certificate">
+        <div class="modal-content-certificate">
+            <span class="close-modal">&times;</span>
+            <img id="modalCertificateImage" src="" alt="Sertifikat Kemnaker" class="modal-image">
+            <p id="modalCertificateCaption"></p>
+        </div>
+    </div>
+
     </main>
 
     <footer class="secondary-bg">
@@ -123,7 +119,7 @@
             </div>
             
             <div class="footer-column">
-                <h3>Kantor Perwakilan Jakarta</h3>
+                <h3>Kantor Cabang Jakarta</h3>
                 <p><i class="fas fa-map-marker-alt primary-color"></i> Jl. Tanjung Barat Ruko Tanjung Mas Raya Blok B1 No. 43 Lt. 1 Tanjung Barat Jakarta Selatan 12530</p>
             </div>
             

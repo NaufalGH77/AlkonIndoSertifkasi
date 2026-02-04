@@ -60,50 +60,32 @@ document.addEventListener('DOMContentLoaded', function() {
     /* ========================================================= */
     
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const clientItems = document.querySelectorAll('.client-logo-item');
+    const clientCategories = document.querySelectorAll('.client-category');
     const allButton = document.querySelector('.filter-btn[data-category="all"]');
 
     /**
      * Fungsi utama untuk memfilter klien.
-     * Logika: Jika kategori 'all' dipilih, tampilkan HANYA satu logo per jenis kategori unik.
-     * Jika kategori spesifik dipilih, tampilkan SEMUA logo yang cocok.
      */
     function filterClients(category) {
-        const displayedCategories = {}; 
-
-        clientItems.forEach(item => {
-            const itemCategory = item.getAttribute('data-category');
+        clientCategories.forEach(categoryDiv => {
+            const categoryName = categoryDiv.getAttribute('data-category');
             
             let shouldDisplay = false;
 
-            // Logika 1: Ketika 'Semua Kategori' (all) dipilih
             if (category === 'all') {
-                // Pastikan itemCategory memiliki nilai dan belum ditampilkan
-                if (itemCategory && !displayedCategories[itemCategory]) {
-                    shouldDisplay = true;
-                    displayedCategories[itemCategory] = true; // Tandai kategori ini sudah ditampilkan
-                }
-            } 
-            // Logika 2: Ketika Kategori Spesifik dipilih
-            else if (itemCategory === category) {
-                shouldDisplay = true; // Tampilkan SEMUA item yang cocok
+                shouldDisplay = true;
+            } else if (categoryName === category) {
+                shouldDisplay = true;
             }
 
-            // Terapkan properti display dan animasi
             if (shouldDisplay) {
-                // Tunda sedikit untuk animasi CSS
                 setTimeout(() => {
-                    item.style.display = 'block';
-                    item.classList.add('fade-in'); 
-                    item.classList.remove('fade-out'); 
-                }, 10); 
+                    categoryDiv.classList.add('active');
+                    categoryDiv.classList.remove('fade-out'); 
+                }, 10);
             } else {
-                item.classList.add('fade-out'); 
-                item.classList.remove('fade-in'); 
-                // Sembunyikan setelah animasi fade-out selesai
-                setTimeout(() => {
-                    item.style.display = 'none';
-                }, 500); // Harus sinkron dengan durasi transisi di CSS
+                categoryDiv.classList.remove('active');
+                categoryDiv.classList.add('fade-out');
             }
         });
     }
@@ -132,4 +114,49 @@ document.addEventListener('DOMContentLoaded', function() {
         filterClients('all');
         setActiveButton(allButton);
     }
+
+    /* ========================================================= */
+    /* === 3. Certificate Modal Functionality === */
+    /* ========================================================= */
+    
+    const certificateModal = document.getElementById('certificateModal');
+    const closeModalBtn = document.querySelector('.close-modal');
+    
+    // Function to open certificate modal
+    window.openCertificateModal = function(element) {
+        const img = element.querySelector('img');
+        const caption = element.querySelector('p');
+        const modalImage = document.getElementById('modalCertificateImage');
+        const modalCaption = document.getElementById('modalCertificateCaption');
+        
+        if (img && caption) {
+            modalImage.src = img.src;
+            modalImage.alt = img.alt;
+            modalCaption.textContent = caption.textContent;
+            certificateModal.style.display = 'block';
+        }
+    };
+    
+    // Close modal when X button is clicked
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', function() {
+            certificateModal.style.display = 'none';
+        });
+    }
+    
+    // Close modal when clicking outside the modal content
+    if (certificateModal) {
+        certificateModal.addEventListener('click', function(event) {
+            if (event.target === certificateModal) {
+                certificateModal.style.display = 'none';
+            }
+        });
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && certificateModal) {
+            certificateModal.style.display = 'none';
+        }
+    });
 });

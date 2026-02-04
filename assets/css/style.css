@@ -541,7 +541,7 @@ section {
 .expertise-section { padding-top: 80px; }
 .expertise-grid { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
 .expertise-card { background-color: white; padding: 20px; border-radius: 6px; width: 340px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.06); }
-.expertise-card img { display: block; margin: 0 auto 15px; max-width: 260px; max-height: 160px; width: auto; height: auto; object-fit: contain; }
+.expertise-card img { display: block; margin: 0 auto 15px; max-width: 320px; max-height: 220px; width: auto; height: auto; object-fit: contain; }
 
 /* activities */
 .activities-section a { font-weight: 600; }
@@ -716,6 +716,45 @@ footer {
     margin-bottom: 10px;
 }
 
+.partner-description {
+    font-size: 0.9em;
+    color: #777;
+    margin: 5px 0 0 0;
+}
+
+/* Single partner featured styling */
+.partners-grid.single-partner {
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.partner-card.featured-partner {
+    background: linear-gradient(135deg, var(--light-bg) 0%, white 100%);
+    border: 3px solid var(--primary-color);
+    padding: 40px;
+    max-width: 100%;
+    box-shadow: 0 8px 25px rgba(253, 185, 19, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.partner-card.featured-partner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(253, 185, 19, 0.25);
+}
+
+.partner-card.featured-partner img {
+    max-height: 120px;
+}
+
+.partner-card.featured-partner p {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin: 15px 0;
+}
+
 /* note box */
 .note-box {
     max-width: 800px;
@@ -771,10 +810,25 @@ footer {
 
 .service-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-    max-width: 1200px;
+    max-width: 950px;
     margin: 40px auto;
+}
+
+.service-card {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+}
+
+.service-card p {
+    flex-grow: 1;
+    margin: 15px 0;
+}
+
+.read-more-link {
+    margin-top: auto;
 }
 
 /* === GALLERY === */
@@ -782,10 +836,38 @@ footer {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.gallery-item {
+    display: block;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: left;
+}
+
+.gallery-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item .caption {
+    padding: 12px 16px 16px;
+    font-size: 0.95em;
+    color: #555;
 }
 
 /* === CONTACT === */
@@ -1056,33 +1138,195 @@ footer {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* Grid logo klien */
-.clients-logo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 30px;
+/* Clients list styling */
+.clients-list-container {
     max-width: 1200px;
-    margin: 0 auto 50px auto;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
-.client-logo-item {
-    text-align: center;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    transition: opacity 0.5s ease;
+.client-category {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.client-logo-item img {
-    max-width: 80%;
-    height: 80px;
-    object-fit: contain;
+.client-category.active {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.3s ease;
+}
+
+.client-category.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.category-title {
+    color: var(--primary-color);
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.client-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    columns: 2;
+    column-gap: 40px;
+}
+
+.client-list li {
+    padding: 8px 0;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.6;
+    break-inside: avoid;
+}
+
+.client-list li:before {
+    content: "• ";
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 /* simple fade classes for later JS toggling */
 .client-logo-item.fade-in { opacity: 1; }
 .client-logo-item.fade-out { opacity: 0; }
+
+/* === CERTIFICATE EXAMPLE === */
+.certificate-example-section { padding: 60px 5%; }
+
+.certificate-showcase-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 40px 0;
+}
+
+.certificate-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 280px;
+}
+
+.certificate-item img {
+    width: 100%;
+    max-width: 250px;
+    max-height: 200px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    display: block;
+    border-radius: 5px;
+}
+
+.certificate-item p {
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+/* === MODAL CERTIFICATE === */
+.modal-certificate {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content-certificate {
+    background-color: white;
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translate(-50%, -60%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+.close-modal {
+    color: var(--secondary-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: var(--accent-color);
+}
+
+.modal-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+#modalCertificateCaption {
+    text-align: center;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+.call-to-action-note {
+    padding: 30px;
+    background-color: white;
+    border-left: 5px solid var(--primary-color);
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-top: 40px;
+}
 
 /* === FLOW (Alur Sertifikasi - 3 gambar vertical) === */
 .flow-content { padding: 60px 5%; text-align: center; }
@@ -1180,6 +1424,7 @@ footer {
 
     .service-grid { grid-template-columns: repeat(2, 1fr); }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item img { height: 220px; }
     .auditor-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 }
 
@@ -1266,8 +1511,9 @@ footer {
 
     .service-grid { grid-template-columns: 1fr; }
     .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item img { height: 200px; }
     .partners-grid { grid-template-columns: repeat(2, 1fr); }
-    .expertise-card img { max-width: 200px; max-height: 120px; }
+    .expertise-card img { max-width: 250px; max-height: 170px; }
 
     .footer-container { flex-direction: column; gap: 30px; padding-bottom: 20px; }
     .footer-column { max-width: 100%; margin: 0; text-align: center; }
