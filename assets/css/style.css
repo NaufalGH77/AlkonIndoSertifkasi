@@ -1500,7 +1500,17 @@ footer {
     .features-section, .expertise-grid { flex-direction: column; gap: 20px; }
     .feature-box, .expertise-card { width: 100%; max-width: 100%; margin: 0; }
 
-    .profile-container { flex-direction: column; }
+    .profile-content { padding: 40px 5%; }
+    .profile-header { margin-bottom: 30px; text-align: center; }
+    .profile-header h2 { font-size: 1.6em; }
+    .profile-header .subtitle { font-size: 0.95em; }
+    .profile-container { grid-template-columns: 1fr; gap: 20px; }
+    .profile-card { padding: 20px; }
+    .profile-card h3 { font-size: 1.25em; }
+    .profile-card h4 { font-size: 1.05em; }
+    .profile-card p,
+    .profile-card ul li { font-size: 0.95em; line-height: 1.7; }
+    .profile-side { gap: 20px; }
     .profile-image { order: -1; margin-bottom: 30px; }
 
     .consultation-box { padding: 35px 20px; }
