@@ -159,4 +159,97 @@ document.addEventListener('DOMContentLoaded', function() {
             certificateModal.style.display = 'none';
         }
     });
+
+    /* ========================================================= */
+    /* === 4. Penawaran Form -> Email Draft (Gmail/Mail App) === */
+    /* ========================================================= */
+
+    const penawaranForm = document.getElementById('penawaran-form');
+
+    if (penawaranForm) {
+        penawaranForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(penawaranForm);
+            const namaPerusahaan = (formData.get('nama-perusahaan') || '').toString().trim();
+            const email = (formData.get('email') || '').toString().trim();
+            const telepon = (formData.get('telepon') || '').toString().trim();
+            const layanan = (formData.get('layanan') || '').toString().trim();
+            const pesan = (formData.get('pesan') || '').toString().trim();
+
+            const subject = `Ajukan Penawaran${namaPerusahaan ? ' - ' + namaPerusahaan : ''}`;
+            const bodyLines = [
+                'Nama Perusahaan: ' + namaPerusahaan,
+                'Email: ' + email,
+                'Telepon/WhatsApp: ' + telepon,
+                'Layanan yang Diinginkan: ' + layanan,
+                'Pesan:',
+                pesan
+            ];
+            const body = bodyLines.join('\n');
+            const targetEmail = 'ais@alkonindo.com';
+
+            const gmailUrl =
+                'https://mail.google.com/mail/?view=cm&fs=1&to=' +
+                encodeURIComponent(targetEmail) +
+                '&su=' +
+                encodeURIComponent(subject) +
+                '&body=' +
+                encodeURIComponent(body);
+
+            const gmailWindow = window.open(gmailUrl, '_blank', 'noopener');
+            if (!gmailWindow) {
+                window.location.href = gmailUrl;
+            }
+
+            const successMessage = penawaranForm.querySelector('.form-success');
+            if (successMessage) {
+                successMessage.classList.remove('hidden');
+            }
+        });
+    }
+
+    /* ========================================================= */
+    /* === 5. Kontak Form -> Email Draft (Gmail) === */
+    /* ========================================================= */
+
+    const contactForm = document.getElementById('contact-form');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(contactForm);
+            const nama = (formData.get('nama') || '').toString().trim();
+            const email = (formData.get('email') || '').toString().trim();
+            const telepon = (formData.get('telepon') || '').toString().trim();
+            const subjek = (formData.get('subjek') || '').toString().trim();
+            const pesan = (formData.get('pesan') || '').toString().trim();
+
+            const subject = `Kontak${subjek ? ' - ' + subjek : ''}`;
+            const bodyLines = [
+                'Nama: ' + nama,
+                'Email: ' + email,
+                'Telepon/WhatsApp: ' + telepon,
+                'Subjek: ' + subjek,
+                'Pesan:',
+                pesan
+            ];
+            const body = bodyLines.join('\n');
+            const targetEmail = 'ais@alkonindo.com';
+
+            const gmailUrl =
+                'https://mail.google.com/mail/?view=cm&fs=1&to=' +
+                encodeURIComponent(targetEmail) +
+                '&su=' +
+                encodeURIComponent(subject) +
+                '&body=' +
+                encodeURIComponent(body);
+
+            const gmailWindow = window.open(gmailUrl, '_blank', 'noopener');
+            if (!gmailWindow) {
+                window.location.href = gmailUrl;
+            }
+        });
+    }
 });
