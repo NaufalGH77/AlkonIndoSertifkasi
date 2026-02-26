@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 pesan
             ];
             const body = bodyLines.join('\n');
-            const targetEmail = 'ais@alkonindo.com';
+            const targetEmail = 'alkon.ptais@gmail.com';
 
             const gmailUrl =
                 'https://mail.google.com/mail/?view=cm&fs=1&to=' +
