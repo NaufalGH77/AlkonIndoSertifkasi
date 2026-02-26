@@ -946,6 +946,15 @@ footer {
     resize: vertical;
 }
 
+.google-map-embed {
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+    height: 450px;
+    border: 0;
+    margin: 0 auto;
+}
+
 /* === PROFILE PAGE (Profile cards layout) === */
 .profile-header {
     margin-bottom: 50px;
@@ -1532,11 +1541,15 @@ footer {
     .footer-container { flex-direction: column; gap: 30px; padding-bottom: 20px; }
     .footer-column { max-width: 100%; margin: 0; text-align: center; }
     .footer-column h3 { width: fit-content; margin-left: auto; margin-right: auto; }
+
+    .google-map-embed { height: 320px; }
 }
 
 @media (max-width: 480px) {
     h1 { font-size: 1.8em; }
     h2 { font-size: 1.4em; }
+
+    .google-map-embed { height: 260px; }
 
     .hero-text-box h1 { font-size: 1.8em; }
     .hero-image-grid { grid-template-columns: 1fr; }
