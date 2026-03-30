@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - PT. AIS</title>
+    <link rel="icon" href="assets/img/Logo AIS.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html" class="logo-link">
+                    <img src="assets/img/Logo AIS.png" alt="Logo AIS" style="height: 50px;">
+                    <span class="logo-text">PT. Alkon Indo Sertifikasi</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="admin-login.html" class="nav-link active-link">Login Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header-section">
+            <img src="assets/img/gambar/Index10.jpg" alt="Background Login Admin" class="header-bg-image">
+            <div class="header-overlay">
+                <div class="container">
+                    <h1>Login Admin</h1>
+                    <div class="breadcrumb">
+                        <a href="index.html">Home</a> / Login Admin
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="admin-auth-section light-bg">
+            <div class="admin-auth-card">
+                <h2>Akses Dashboard Admin</h2>
+                <p>Masukkan akun admin yang sudah didaftarkan dari sisi internal server.</p>
+
+                <form id="admin-login-form" class="admin-auth-form" novalidate>
+                    <div>
+                        <label for="admin-email">Email Admin</label>
+                        <input id="admin-email" name="email" type="email" autocomplete="username" required>
+                    </div>
+                    <div>
+                        <label for="admin-password">Password</label>
+                        <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+
+                <div id="admin-login-feedback" class="form-success hidden"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        (function () {
+            const isLiveServer = window.location.port === '5500';
+            window.AIS_API_CONFIG = {
+                baseUrl: isLiveServer ? 'http://localhost:5001' : ''
+            };
+        })();
+    </script>
+    <script src="assets/js/admin-login.js"></script>
+</body>
+</html>

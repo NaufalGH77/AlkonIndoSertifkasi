@@ -161,94 +161,161 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* ========================================================= */
-    /* === 4. Penawaran Form -> Email Draft (Gmail/Mail App) === */
+    /* === 4. Integrasi Form ke Backend API ==================== */
+    /* ========================================================= */
+
+    const API_CONFIG = window.AIS_API_CONFIG || {};
+    const API_BASE_URL = (API_CONFIG.baseUrl || '').toString().trim();
+
+    function buildApiUrl(endpoint) {
+        if (!endpoint) return '';
+        if (/^https?:\/\//i.test(endpoint)) return endpoint;
+
+        if (!API_BASE_URL) return endpoint;
+
+        const cleanBase = API_BASE_URL.replace(/\/$/, '');
+        const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+        return `${cleanBase}${cleanEndpoint}`;
+    }
+
+    function ensureFeedbackElement(form) {
+        let feedbackElement = form.querySelector('.form-success');
+        if (!feedbackElement) {
+            feedbackElement = document.createElement('div');
+            feedbackElement.className = 'form-success hidden';
+            form.appendChild(feedbackElement);
+        }
+        return feedbackElement;
+    }
+
+    function showFormFeedback(form, message, type = 'success') {
+        const feedbackElement = ensureFeedbackElement(form);
+        feedbackElement.textContent = message;
+        feedbackElement.classList.remove('hidden');
+
+        if (type === 'error') {
+            feedbackElement.classList.add('is-error');
+        } else {
+            feedbackElement.classList.remove('is-error');
+        }
+    }
+
+    async function submitFormToBackend(form, payload, options = {}) {
+        const endpoint =
+            (form.getAttribute('data-endpoint') || '').trim() ||
+            options.defaultEndpoint ||
+            (form.getAttribute('action') || '').trim();
+
+        if (!endpoint) {
+            throw new Error('Endpoint backend belum dikonfigurasi untuk form ini.');
+        }
+
+        const submitButton = form.querySelector('button[type="submit"]');
+        const initialButtonLabel = submitButton ? submitButton.textContent : '';
+
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Mengirim...';
+        }
+
+        try {
+            let response;
+            try {
+                response = await fetch(buildApiUrl(endpoint), {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+            } catch (_networkError) {
+                throw new Error('Tidak bisa terhubung ke backend. Pastikan server API aktif di http://localhost:5001.');
+            }
+
+            let responseData = null;
+            try {
+                responseData = await response.json();
+            } catch (_error) {
+                responseData = null;
+            }
+
+            if (!response.ok) {
+                const errorMessage =
+                    (responseData && responseData.message) ||
+                    `Gagal mengirim data (${response.status})`;
+                throw new Error(errorMessage);
+            }
+
+            showFormFeedback(form, options.successMessage || 'Data berhasil dikirim.', 'success');
+            form.reset();
+            return responseData;
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = initialButtonLabel;
+            }
+        }
+    }
+
+    /* ========================================================= */
+    /* === 5. Submit Form Penawaran ke Backend ================= */
     /* ========================================================= */
 
     const penawaranForm = document.getElementById('penawaran-form');
 
     if (penawaranForm) {
-        penawaranForm.addEventListener('submit', function(event) {
+        penawaranForm.addEventListener('submit', async function(event) {
             event.preventDefault();
 
             const formData = new FormData(penawaranForm);
-            const namaPerusahaan = (formData.get('nama-perusahaan') || '').toString().trim();
-            const email = (formData.get('email') || '').toString().trim();
-            const telepon = (formData.get('telepon') || '').toString().trim();
-            const layanan = (formData.get('layanan') || '').toString().trim();
-            const pesan = (formData.get('pesan') || '').toString().trim();
+            const payload = Object.fromEntries(formData.entries());
 
-            const subject = `Ajukan Penawaran${namaPerusahaan ? ' - ' + namaPerusahaan : ''}`;
-            const bodyLines = [
-                'Nama Perusahaan: ' + namaPerusahaan,
-                'Email: ' + email,
-                'Telepon/WhatsApp: ' + telepon,
-                'Layanan yang Diinginkan: ' + layanan,
-                'Pesan:',
-                pesan
-            ];
-            const body = bodyLines.join('\n');
-            const targetEmail = 'ais@alkonindo.com';
+            payload.formType = 'penawaran';
+            payload.sourcePage = 'penawaran';
 
-            const gmailUrl =
-                'https://mail.google.com/mail/?view=cm&fs=1&to=' +
-                encodeURIComponent(targetEmail) +
-                '&su=' +
-                encodeURIComponent(subject) +
-                '&body=' +
-                encodeURIComponent(body);
-
-            const gmailWindow = window.open(gmailUrl, '_blank', 'noopener');
-            if (!gmailWindow) {
-                window.location.href = gmailUrl;
-            }
-
-            const successMessage = penawaranForm.querySelector('.form-success');
-            if (successMessage) {
-                successMessage.classList.remove('hidden');
+            try {
+                await submitFormToBackend(penawaranForm, payload, {
+                    defaultEndpoint: '/api/penawaran',
+                    successMessage: 'Terima kasih! Kami akan menghubungi Anda segera.'
+                });
+            } catch (error) {
+                showFormFeedback(
+                    penawaranForm,
+                    (error && error.message) || 'Terjadi kesalahan saat mengirim penawaran.',
+                    'error'
+                );
             }
         });
     }
 
     /* ========================================================= */
-    /* === 5. Kontak Form -> Email Draft (Gmail) === */
+    /* === 6. Submit Form Kontak ke Backend ==================== */
     /* ========================================================= */
 
     const contactForm = document.getElementById('contact-form');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
+        contactForm.addEventListener('submit', async function(event) {
             event.preventDefault();
 
             const formData = new FormData(contactForm);
-            const nama = (formData.get('nama') || '').toString().trim();
-            const email = (formData.get('email') || '').toString().trim();
-            const telepon = (formData.get('telepon') || '').toString().trim();
-            const subjek = (formData.get('subjek') || '').toString().trim();
-            const pesan = (formData.get('pesan') || '').toString().trim();
+            const payload = Object.fromEntries(formData.entries());
 
-            const subject = `Kontak${subjek ? ' - ' + subjek : ''}`;
-            const bodyLines = [
-                'Nama: ' + nama,
-                'Email: ' + email,
-                'Telepon/WhatsApp: ' + telepon,
-                'Subjek: ' + subjek,
-                'Pesan:',
-                pesan
-            ];
-            const body = bodyLines.join('\n');
-            const targetEmail = 'alkon.ptais@gmail.com';
+            payload.formType = 'kontak';
+            payload.sourcePage = 'kontak';
 
-            const gmailUrl =
-                'https://mail.google.com/mail/?view=cm&fs=1&to=' +
-                encodeURIComponent(targetEmail) +
-                '&su=' +
-                encodeURIComponent(subject) +
-                '&body=' +
-                encodeURIComponent(body);
-
-            const gmailWindow = window.open(gmailUrl, '_blank', 'noopener');
-            if (!gmailWindow) {
-                window.location.href = gmailUrl;
+            try {
+                await submitFormToBackend(contactForm, payload, {
+                    defaultEndpoint: '/api/kontak',
+                    successMessage: 'Pesan berhasil dikirim. Tim kami akan segera merespons.'
+                });
+            } catch (error) {
+                showFormFeedback(
+                    contactForm,
+                    (error && error.message) || 'Terjadi kesalahan saat mengirim pesan.',
+                    'error'
+                );
             }
         });
     }

@@ -111,6 +111,14 @@
         </div>
     </footer>
 
+    <script>
+        (function () {
+            const isLiveServer = window.location.port === '5500';
+            window.AIS_API_CONFIG = {
+                baseUrl: isLiveServer ? 'http://localhost:5001' : ''
+            };
+        })();
+    </script>
     <script src="assets/js/script.js"></script>
 </body>
 </html>
